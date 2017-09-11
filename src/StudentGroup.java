@@ -1,5 +1,5 @@
 import java.util.Date;
-
+import java.util.*;
 /**
  * A fix-sized array of students
  * array length should always be equal to the number of stored elements
@@ -27,7 +27,7 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudents() {
 
-		return this.students[];
+		return this.students;
 	}
 
 	@Override
@@ -51,11 +51,11 @@ public class StudentGroup implements StudentArrayOperation {
                 String date=s.next();
                  birthDate=year+"-"+month+"-"+date;
                   avgMark=s.nextDouble();
-            students[i]= new Student(id,fullName,birthDate,avgMarks);
+           // students[i]= new Student(id,fullName,birthDate,avgMark);
         }
         }
 
-	}
+
 
 	@Override
 	public Student getStudent(int index) {
@@ -66,18 +66,19 @@ public class StudentGroup implements StudentArrayOperation {
 		}
 		catch(Exception e)
 		{
+return null;
+		}
 
 		}
-		}
-	}
+
 
 	@Override
 	public void setStudent(Student student, int index) {
 		// Add your implementation here
 		try{
 		    if(student==null)
-                    throw "IllegalArgumentException";
-		this.students[index]=new Student(student);
+                    throw new Exception("IllegalArgumentException");
+		this.students[index]=student;
 		}
 		catch(Exception e)
 		{
@@ -90,8 +91,8 @@ public class StudentGroup implements StudentArrayOperation {
 
 	    	try{
 	    	    if(student==null)
-                    throw "IllegalArgumentException";
-	    this.students[0]=new Student(student);
+                    throw new Exception("IllegalArgumentException");
+	    this.students[0]=student;
 	    }
 		catch(Exception e)
 		{
@@ -104,8 +105,8 @@ public class StudentGroup implements StudentArrayOperation {
 	public void addLast(Student student) {
 	    	try{
 	    	    if(student==null)
-                    throw "IllegalArgumentException";
-	    this.students[length-1]=new Student(student);
+                    throw new Exception("IllegalArgumentException");
+	    this.students[length-1]=student;
 	    	}
 		catch(Exception e)
 		{
@@ -118,8 +119,8 @@ public class StudentGroup implements StudentArrayOperation {
 	public void add(Student student, int index) {
 	    try{
 	        if(student==null)
-                    throw "IllegalArgumentException";
-		this.students[index]=new Student(student);
+                    throw new Exception("IllegalArgumentException");
+		this.students[index]=student;
 		}
 		catch(Exception e)
 		{
@@ -130,8 +131,8 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void remove(int index) {
-	      try{  if(index<0||index>lngth)
-                    throw "IllegalArgumentException";
+	      try{  if(index<0||index>length)
+                    throw new Exception("IllegalArgumentException");
 	    this.students[index]=null;
 	    }
 
@@ -146,7 +147,7 @@ public class StudentGroup implements StudentArrayOperation {
 	public void remove(Student student) {
 	    for(int i=0;i<length;i++)
         {
-            if(students[i].equals(student))){
+            if(students[i].equals(student)){
             students[i]=null;break;
 
             }
@@ -157,17 +158,17 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void removeFromIndex(int index) {
-	     try{  if(index<0||index>lngth)
-                    throw "IllegalArgumentException";
-	   while(this.students[index]=null)
+	     try{  if(index<0||index>length)
+                    throw new Exception("IllegalArgumentException");
+	   while(true){
+        this.students[index]=null;
         index++;
 	    }
-
+	     }
 		catch(Exception e)
 		{
 
 		}
-students.removeIf(Objects::isNull);		// Add your implementation here
 	}
 
 	@Override
@@ -175,7 +176,7 @@ students.removeIf(Objects::isNull);		// Add your implementation here
 
         for(int i=0;i<length;i++)
         {
-            if(students[i].equals(student))){
+            if(students[i].equals(student)){
             students[i]=null;break;
 
             }
@@ -254,3 +255,4 @@ students.removeIf(Objects::isNull);		// Add your implementation here
 		return null;
 	}
 }
+
